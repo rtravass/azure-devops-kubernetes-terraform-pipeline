@@ -1,0 +1,22 @@
+#Pipelines > Stages > Jobs > Tasks(Steps) 
+
+trigger:
+- master
+
+strategy:
+  matrix:
+    linux:
+      operatingSystem: 'ubuntu-latest'
+    mac:
+      operatingSystem: 'macos-latest'
+
+pool:
+  vmImage: $(operatingSystem)
+  #vmImagey: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: echo Running on $(operatingSystem)
+  displayName: 'Run a multi-line script'
